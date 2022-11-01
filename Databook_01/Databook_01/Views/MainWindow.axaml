@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Databook_01.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="Databook_01.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Databook_01"
+		Width="1080"
+		Height="720"
+		CanResize="False"
+		WindowStartupLocation="CenterScreen">
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+	<WrapPanel Margin="20,0">
+		<StackPanel HorizontalAlignment="Left" Width="800" Margin="0,50">
+			<WrapPanel>
+				<Button Content="Загрузить данные" Command="{Binding CMD_Load}" HorizontalAlignment="Left"/>
+				<Button Content="Фильтр..." Command="{Binding CMD_Filter}" HorizontalAlignment="Left"/>
+			</WrapPanel>
+			<ListBox Name="TableList" Height="100"
+					 Items="{Binding Table_List}"
+					 SelectedItem="{Binding Table_Selected}">
+			</ListBox>
+			<DataGrid Name="Datagrid1"
+					  ColumnWidth="*"
+					  Items="{Binding Datalist}"
+					  AutoGenerateColumns="True"
+					  Width="800"
+					  Height="400"
+					  MaxWidth="800"
+					  MaxHeight="400"
+					  SelectedIndex="{Binding Entry_Selected}"
+					  IsReadOnly="True"
+					  CanUserResizeColumns="True">
+			</DataGrid>
+		</StackPanel>
+		<StackPanel VerticalAlignment="Top" Margin="50,196">
+			<Button Name="BTN_Insert" Command="{Binding CMD_Insert}" Content="Добавить..." Width="130" Height="26"/>
+			<Button Name="BTN_Edit" Command="{Binding CMD_Edit}" Content="Редактировать..." Width="130" Height="26"/>
+			<Button Name="BTN_Delete" Command="{Binding CMD_Delete}" Content="Удалить..." Width="130" Height="26"/>
+		</StackPanel>
+	</WrapPanel>
+</Window>
